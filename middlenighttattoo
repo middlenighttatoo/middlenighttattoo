@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIDNIGHT NEEDLE TATTOO | Custom Body Art USA</title>
+  <style>
+    :root {
+      --bg-main: #0a0b0e;
+      --bg-card: #12151c;
+      --bg-card-hover: #1a1e28;
+      --accent: #d4af37;
+      --accent-glow: rgba(212, 175, 55, 0.25);
+      --text-light: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: #232936;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* HEADER & NAV */
+    header {
+      background: rgba(10, 11, 14, 0.95);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(rgba(10, 11, 14, 0.85), rgba(10, 11, 14, 0.98)), 
+                  radial-gradient(circle at center, #1f2833 0%, #0a0b0e 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 1.5rem 2rem 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px rgba(0,0,0,0.8);
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 650px;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #0a0b0e;
+      padding: 0.9rem 2.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-decoration: none;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px var(--accent-glow);
+    }
+
+    .btn:hover {
+      background: #e6c250;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--accent);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 3rem;
+    }
+
+    /* PORTFOLIO FILTERS & GRID */
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.6rem 1.4rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      border-radius: 3px;
+      transition: all 0.3s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(212, 175, 55, 0.05);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      min-height: 400px;
+    }
+
+    .portfolio-item {
+      position: relative;
+      background-color: var(--bg-card);
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      height: 340px;
+      border: 1px solid var(--border);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(10, 11, 14, 0.95), rgba(10, 11, 14, 0.2));
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+
+    .portfolio-overlay h4 {
+      color: #ffffff;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .portfolio-overlay p {
+      color: var(--accent);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* SERVICES SECTION */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent);
+      background-color: var(--bg-card-hover);
+      transform: translateY(-4px);
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* BOOKING & CONTACT SECTION */
+    .booking-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      background-color: var(--bg-card);
+      padding: 3rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .contact-details h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+    }
+
+    .contact-details p {
+      margin-bottom: 1.2rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .contact-details strong {
+      color: #ffffff;
+    }
+
+    .contact-details a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-details a:hover {
+      text-decoration: underline;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-light);
+    }
+
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--bg-main);
+      border: 1px solid var(--border);
+      color: #ffffff;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+
+    .form-group input:focus, 
+    .form-group select:focus, 
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    /* LIGHTBOX MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      padding: 1.5rem;
+    }
+
+    .modal-content {
+      max-width: 750px;
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+
+    .modal-content img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-info {
+      padding: 1.5rem;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      font-size: 2rem;
+      color: #ffffff;
+      cursor: pointer;
+      line-height: 1;
+      z-index: 10;
+    }
+
+    .close-modal:hover {
+      color: var(--accent);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 900px) {
+      .booking-wrapper {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 1rem;
+      }
+
+      nav {
+        gap: 1rem;
+      }
+
+      nav a {
+        font-size: 0.75rem;
+      }
+
+      .container {
+        padding: 3.5rem 1rem;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .filter-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.7rem;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER NAV -->
+  <header>
+    <div class="logo">MIDNIGHT <span>NEEDLE</span></div>
+    <nav>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#services">Services</a>
+      <a href="#booking">Book Appointment</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Midnight Needle Tattoo</h1>
+    <p>Premier custom body art studio in the USA. Delivering precise craftsmanship, bespoke artwork, and sterile professional standards.</p>
+    <a href="#booking" class="btn">Book Consultation</a>
+  </section>
+
+  <!-- PORTFOLIO SECTION -->
+  <section class="container" id="portfolio">
+    <h2 class="section-title">Gallery & Portfolio</h2>
+    <p class="section-subtitle">Explore Custom Tattoos Across Styles</p>
+
+    <!-- Filters -->
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="blackgrey">Black & Grey</button>
+      <button class="filter-btn" data-filter="realism">Realism</button>
+      <button class="filter-btn" data-filter="traditional">Traditional</button>
+      <button class="filter-btn" data-filter="color">Color & Japanese</button>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <div class="portfolio-grid" id="portfolioGrid"></div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section class="container" id="services">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-subtitle">High-End Custom Tattooing</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Bespoke Tattoo Design</h3>
+        <p>Direct 1-on-1 collaboration with senior artists to turn your concepts into one-of-a-kind body art.</p>
+      </div>
+      <div class="service-card">
+        <h3>Sleeves & Large Scale Art</h3>
+        <p>Comprehensive multi-session planning for full arm sleeves, leg sleeves, and detailed back pieces.</p>
+      </div>
+      <div class="service-card">
+        <h3>Cover-Ups & Restorations</h3>
+        <p>Masterful reworks and full cover-up strategies designed to transform existing ink cleanly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING / CONTACT SECTION -->
+  <section class="container" id="booking">
+    <h2 class="section-title">Book Your Session</h2>
+    <p class="section-subtitle">Reserve Your Consultation Today</p>
+
+    <div class="booking-wrapper">
+      <!-- Contact Info -->
+      <div class="contact-details">
+        <h3>Studio Information</h3>
+        <p><strong>Studio:</strong> Midnight Needle Tattoo</p>
+        <p><strong>Location:</strong> United States</p>
+        <p><strong>Email:</strong> <a href="mailto:midnightneedletattoo@gmail.com">midnightneedletattoo@gmail.com</a></p>
+        <p><strong>Hours:</strong> Tuesday – Saturday: 12:00 PM – 9:00 PM EST</p>
+        <p><strong>Booking Note:</strong> Appointments require a non-refundable deposit upon confirmation of session dates.</p>
+      </div>
+
+      <!-- Booking Form -->
+      <form action="mailto:midnightneedletattoo@gmail.com" method="post" enctype="text/plain">
+        <div class="form-group">
+          <label for="name">Your Full Name</label>
+          <input type="text" id="name" name="Client Name" required placeholder="Marcus Vance">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="Client Email" required placeholder="marcus.vance@gmail.com">
+        </div>
+        <div class="form-group">
+          <label for="style">Preferred Tattoo Style</label>
+          <select id="style" name="Tattoo Style">
+            <option value="Black & Grey">Black & Grey</option>
+            <option value="Realism">Photorealism</option>
+            <option value="Traditional">Traditional / Neo-Traditional</option>
+            <option value="Color / Japanese">Color / Japanese Irezumi</option>
+            <option value="Cover-Up">Cover-Up / Rework</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="placement">Placement & Approx Size</label>
+          <input type="text" id="placement" name="Placement & Size" placeholder="Outer Forearm, 7x4 inches">
+        </div>
+        <div class="form-group">
+          <label for="description">Concept & Ideas</label>
+          <textarea id="description" name="Concept Details" rows="4" required placeholder="Describe your tattoo vision, symbolism, and desired timeline..."></textarea>
+        </div>
+        <button type="submit" class="btn" style="width:100%;">Submit Consultation Request</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="modal" id="imageModal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModalBtn">&times;</span>
+      <img id="modalImage" src="" alt="Tattoo Detail View">
+      <div class="modal-info">
+        <h3 id="modalTitle" style="color: var(--accent); margin-bottom: 0.3rem;"></h3>
+        <p id="modalCategory" style="color: var(--text-muted); font-size: 0.9rem;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Midnight Needle Tattoo. All rights reserved. | Contact: <a href="mailto:midnightneedletattoo@gmail.com" style="color: var(--accent); text-decoration: none;">midnightneedletattoo@gmail.com</a></p>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC WITH GUARANTEED EMBEDDED IMAGES -->
+  <script>
+    // Embedded SVG Generator so images display 100% reliably in local mobile previewers
+    function createTattooCardSVG(title, category) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700">
+        <rect width="100%" height="100%" fill="#12151c"/>
+        <rect x="20" y="20" width="560" height="660" fill="none" stroke="#232936" stroke-width="2"/>
+        <circle cx="300" cy="300" r="140" fill="none" stroke="#d4af37" stroke-width="3" opacity="0.4"/>
+        <path d="M 230,300 L 370,300 M 300,230 L 300,370" stroke="#d4af37" stroke-width="2" opacity="0.6"/>
+        <text x="50%" y="500" font-family="sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle">${title}</text>
+        <text x="50%" y="540" font-family="sans-serif" font-size="18" fill="#d4af37" letter-spacing="2" text-anchor="middle">${category}</text>
+      </svg>`;
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    }
+
+    const portfolioItems = [
+      { id: 1, title: "Photorealistic Lion", category: "realism", categoryName: "Realism", image: createTattooCardSVG("Photorealistic Lion", "REALISM") },
+      { id: 2, title: "Skull & Rose Fine Line", category: "blackgrey", categoryName: "Black & Grey", image: createTattooCardSVG("Skull & Rose", "BLACK & GREY") },
+      { id: 3, title: "Traditional Eagle", category: "traditional", categoryName: "Traditional", image: createTattooCardSVG("Traditional Eagle", "TRADITIONAL") },
+      { id: 4, title: "Pocket Watch & Roses", category: "blackgrey", categoryName: "Black & Grey", image: createTattooCardSVG("Pocket Watch", "BLACK & GREY") },
+      { id: 5, title: "Hyper-Real Eye", category: "realism", categoryName: "Realism", image: createTattooCardSVG("Hyper-Real Eye", "REALISM") },
+      { id: 6, title: "Dagger & Serpent", category: "traditional", categoryName: "Traditional", image: createTattooCardSVG("Dagger & Serpent", "TRADITIONAL") },
+      { id: 7, title: "Dragon Sleeve", category: "color", categoryName: "Color & Japanese", image: createTattooCardSVG("Dragon Sleeve", "COLOR / JAPANESE") },
+      { id: 8, title: "Full Arm Sleeve", category: "blackgrey", categoryName: "Black & Grey", image: createTattooCardSVG("Full Arm Sleeve", "BLACK & GREY") },
+      { id: 9, title: "Geometric Mandala", category: "color", categoryName: "Color & Japanese", image: createTattooCardSVG("Geometric Mandala", "COLOR / JAPANESE") },
+      { id: 10, title: "Neo-Traditional Panther", category: "traditional", categoryName: "Traditional", image: createTattooCardSVG("Neo Panther", "TRADITIONAL") },
+      { id: 11, title: "Wolf & Forest", category: "realism", categoryName: "Realism", image: createTattooCardSVG("Wolf & Forest", "REALISM") },
+      { id: 12, title: "Koi Fish Back Piece", category: "color", categoryName: "Color & Japanese", image: createTattooCardSVG("Koi Back Piece", "COLOR / JAPANESE") }
+    ];
+
+    function renderPortfolio(items) {
+      const grid = document.getElementById('portfolioGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'portfolio-item';
+        card.onclick = function() { openModal(item.id); };
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.title}">
+          <div class="portfolio-overlay">
+            <h4>${item.title}</h4>
+            <p>${item.categoryName}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filter event binding
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.getAttribute('data-filter');
+
+        if (filter === 'all') {
+          renderPortfolio(portfolioItems);
+        } else {
+          const filtered = portfolioItems.filter(item => item.category === filter);
+          renderPortfolio(filtered);
+        }
+      });
+    });
+
+    // Modal Lightbox Functions
+    function openModal(id) {
+      const item = portfolioItems.find(i => i.id === id);
+      if (item) {
+        document.getElementById('modalImage').src = item.image;
+        document.getElementById('modalTitle').innerText = item.title;
+        document.getElementById('modalCategory').innerText = `Category: ${item.categoryName}`;
+        document.getElementById('imageModal').style.display = 'flex';
+      }
+    }
+
+    document.getElementById('closeModalBtn').onclick = function() {
+      document.getElementById('imageModal').style.display = 'none';
+    };
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('imageModal');
+      if (event.target === 
