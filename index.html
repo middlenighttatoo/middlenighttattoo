@@ -79,7 +79,7 @@
 
     /* HERO SECTION */
     .hero {
-      min-height: 100vh;
+      min-height: 80vh;
       background: linear-gradient(rgba(10, 11, 14, 0.85), rgba(10, 11, 14, 0.98)), 
                   radial-gradient(circle at center, #1f2833 0%, #0a0b0e 100%);
       display: flex;
@@ -220,7 +220,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to top, rgba(10, 11, 14, 0.95), rgba(10, 11, 14, 0.2));
+      background: linear-gradient(to top, rgba(10, 11, 14, 0.95), rgba(10, 11, 14, 0.1));
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -310,10 +310,6 @@
     .contact-details a {
       color: var(--accent);
       text-decoration: none;
-    }
-
-    .contact-details a:hover {
-      text-decoration: underline;
     }
 
     .form-group {
@@ -517,7 +513,6 @@
     <p class="section-subtitle">Reserve Your Consultation Today</p>
 
     <div class="booking-wrapper">
-      <!-- Contact Info -->
       <div class="contact-details">
         <h3>Studio Information</h3>
         <p><strong>Studio:</strong> Midnight Needle Tattoo</p>
@@ -527,7 +522,6 @@
         <p><strong>Booking Note:</strong> Appointments require a non-refundable deposit upon confirmation of session dates.</p>
       </div>
 
-      <!-- Booking Form -->
       <form action="mailto:midnightneedletattoo@gmail.com" method="post" enctype="text/plain">
         <div class="form-group">
           <label for="name">Your Full Name</label>
@@ -577,34 +571,22 @@
     <p>&copy; 2026 Midnight Needle Tattoo. All rights reserved. | Contact: <a href="mailto:midnightneedletattoo@gmail.com" style="color: var(--accent); text-decoration: none;">midnightneedletattoo@gmail.com</a></p>
   </footer>
 
-  <!-- JAVASCRIPT LOGIC WITH GUARANTEED EMBEDDED IMAGES -->
+  <!-- SCRIPT WITH BUILT-IN FALLBACKS & HTTPS UNSPLASH URLS -->
   <script>
-    // Embedded SVG Generator so images display 100% reliably in local mobile previewers
-    function createTattooCardSVG(title, category) {
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700">
-        <rect width="100%" height="100%" fill="#12151c"/>
-        <rect x="20" y="20" width="560" height="660" fill="none" stroke="#232936" stroke-width="2"/>
-        <circle cx="300" cy="300" r="140" fill="none" stroke="#d4af37" stroke-width="3" opacity="0.4"/>
-        <path d="M 230,300 L 370,300 M 300,230 L 300,370" stroke="#d4af37" stroke-width="2" opacity="0.6"/>
-        <text x="50%" y="500" font-family="sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle">${title}</text>
-        <text x="50%" y="540" font-family="sans-serif" font-size="18" fill="#d4af37" letter-spacing="2" text-anchor="middle">${category}</text>
-      </svg>`;
-      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    // Embedded SVG Fallback image generator
+    function getFallbackSvg(title, category) {
+      return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700"><rect width="100%" height="100%" fill="%2312151c"/><rect x="20" y="20" width="560" height="660" fill="none" stroke="%23232936" stroke-width="2"/><circle cx="300" cy="300" r="120" fill="none" stroke="%23d4af37" stroke-width="2" opacity="0.5"/><text x="50%" y="480" font-family="sans-serif" font-size="26" font-weight="bold" fill="%23ffffff" text-anchor="middle">${encodeURIComponent(title)}</text><text x="50%" y="520" font-family="sans-serif" font-size="16" fill="%23d4af37" letter-spacing="2" text-anchor="middle">${encodeURIComponent(category)}</text></svg>`;
     }
 
     const portfolioItems = [
-      { id: 1, title: "Photorealistic Lion", category: "realism", categoryName: "Realism", image: createTattooCardSVG("Photorealistic Lion", "REALISM") },
-      { id: 2, title: "Skull & Rose Fine Line", category: "blackgrey", categoryName: "Black & Grey", image: createTattooCardSVG("Skull & Rose", "BLACK & GREY") },
-      { id: 3, title: "Traditional Eagle", category: "traditional", categoryName: "Traditional", image: createTattooCardSVG("Traditional Eagle", "TRADITIONAL") },
-      { id: 4, title: "Pocket Watch & Roses", category: "blackgrey", categoryName: "Black & Grey", image: createTattooCardSVG("Pocket Watch", "BLACK & GREY") },
-      { id: 5, title: "Hyper-Real Eye", category: "realism", categoryName: "Realism", image: createTattooCardSVG("Hyper-Real Eye", "REALISM") },
-      { id: 6, title: "Dagger & Serpent", category: "traditional", categoryName: "Traditional", image: createTattooCardSVG("Dagger & Serpent", "TRADITIONAL") },
-      { id: 7, title: "Dragon Sleeve", category: "color", categoryName: "Color & Japanese", image: createTattooCardSVG("Dragon Sleeve", "COLOR / JAPANESE") },
-      { id: 8, title: "Full Arm Sleeve", category: "blackgrey", categoryName: "Black & Grey", image: createTattooCardSVG("Full Arm Sleeve", "BLACK & GREY") },
-      { id: 9, title: "Geometric Mandala", category: "color", categoryName: "Color & Japanese", image: createTattooCardSVG("Geometric Mandala", "COLOR / JAPANESE") },
-      { id: 10, title: "Neo-Traditional Panther", category: "traditional", categoryName: "Traditional", image: createTattooCardSVG("Neo Panther", "TRADITIONAL") },
-      { id: 11, title: "Wolf & Forest", category: "realism", categoryName: "Realism", image: createTattooCardSVG("Wolf & Forest", "REALISM") },
-      { id: 12, title: "Koi Fish Back Piece", category: "color", categoryName: "Color & Japanese", image: createTattooCardSVG("Koi Back Piece", "COLOR / JAPANESE") }
+      { id: 1, title: "Photorealistic Lion", category: "realism", categoryName: "Realism", image: "https://images.unsplash.com/photo-1562962230-86e4626dd928?auto=format&fit=crop&w=600&q=80" },
+      { id: 2, title: "Skull & Rose Fine Line", category: "blackgrey", categoryName: "Black & Grey", image: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=600&q=80" },
+      { id: 3, title: "Traditional Eagle", category: "traditional", categoryName: "Traditional", image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=600&q=80" },
+      { id: 4, title: "Pocket Watch & Roses", category: "blackgrey", categoryName: "Black & Grey", image: "https://images.unsplash.com/photo-1542226601-bc82e276ae3a?auto=format&fit=crop&w=600&q=80" },
+      { id: 5, title: "Hyper-Real Portrait", category: "realism", categoryName: "Realism", image: "https://images.unsplash.com/photo-1550525811-e5869dd03032?auto=format&fit=crop&w=600&q=80" },
+      { id: 6, title: "Dagger & Serpent", category: "traditional", categoryName: "Traditional", image: "https://images.unsplash.com/photo-1568515045052-f9a854d7a457?auto=format&fit=crop&w=600&q=80" },
+      { id: 7, title: "Dragon Sleeve", category: "color", categoryName: "Color & Japanese", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" },
+      { id: 8, title: "Full Arm Sleeve", category: "blackgrey", categoryName: "Black & Grey", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" }
     ];
 
     function renderPortfolio(items) {
@@ -616,18 +598,26 @@
         const card = document.createElement('div');
         card.className = 'portfolio-item';
         card.onclick = function() { openModal(item.id); };
-        card.innerHTML = `
-          <img src="${item.image}" alt="${item.title}">
-          <div class="portfolio-overlay">
-            <h4>${item.title}</h4>
-            <p>${item.categoryName}</p>
-          </div>
-        `;
+        
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.title;
+        img.onerror = function() {
+          this.onerror = null;
+          this.src = getFallbackSvg(item.title, item.categoryName);
+        };
+
+        const overlay = document.createElement('div');
+        overlay.className = 'portfolio-overlay';
+        overlay.innerHTML = `<h4>${item.title}</h4><p>${item.categoryName}</p>`;
+
+        card.appendChild(img);
+        card.appendChild(overlay);
         grid.appendChild(card);
       });
     }
 
-    // Filter event binding
+    // Filter Logic
     document.querySelectorAll('.filter-btn').forEach(button => {
       button.addEventListener('click', function() {
         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
@@ -643,11 +633,16 @@
       });
     });
 
-    // Modal Lightbox Functions
+    // Modal Lightbox
     function openModal(id) {
       const item = portfolioItems.find(i => i.id === id);
       if (item) {
-        document.getElementById('modalImage').src = item.image;
+        const modalImg = document.getElementById('modalImage');
+        modalImg.src = item.image;
+        modalImg.onerror = function() {
+          this.onerror = null;
+          this.src = getFallbackSvg(item.title, item.categoryName);
+        };
         document.getElementById('modalTitle').innerText = item.title;
         document.getElementById('modalCategory').innerText = `Category: ${item.categoryName}`;
         document.getElementById('imageModal').style.display = 'flex';
@@ -660,4 +655,14 @@
 
     window.onclick = function(event) {
       const modal = document.getElementById('imageModal');
-      if (event.target === 
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+
+    // Initial Render
+    renderPortfolio(portfolioItems);
+  </script>
+</body>
+</html>
+
